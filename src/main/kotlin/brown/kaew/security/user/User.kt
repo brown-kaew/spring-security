@@ -14,7 +14,7 @@ data class User(
         var firstname: String,
         var lastname: String,
         var email: String,
-        var password: String,
+        @JvmField var password: String,
         @Enumerated(EnumType.STRING)
         var role: Role
 ) : UserDetails {

@@ -7,13 +7,13 @@ import brown.kaew.security.user.UserRepository
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.userdetails.UsernameNotFoundException
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class AuthenticationService(
         val userRepository: UserRepository,
-        val passwordEncoder: BCryptPasswordEncoder,
+        val passwordEncoder: PasswordEncoder,
         val jwtService: JwtService,
         val authenticationManager: AuthenticationManager
 ) {
