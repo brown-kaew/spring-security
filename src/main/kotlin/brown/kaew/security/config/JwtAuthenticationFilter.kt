@@ -8,7 +8,9 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
 import org.springframework.stereotype.Component
+import org.springframework.util.StringUtils
 import org.springframework.web.filter.OncePerRequestFilter
+import java.util.*
 
 @Component
 class JwtAuthenticationFilter(
@@ -17,8 +19,8 @@ class JwtAuthenticationFilter(
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
-        val authHeader: String = request.getHeader("Authorization")
-        if (authHeader.startsWith("Bearer ")) {
+        val authHeader: String = Objects.requireNonNullElse(request.getHeader("Authorization"), "")
+        if (!StringUtils.hasText(authHeader) || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response)
             return
         }
