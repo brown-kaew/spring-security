@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails
 data class User(
         @Id
         @GeneratedValue
-        var id: Int,
+        var id: Int? = null,
         var firstname: String,
         var lastname: String,
         var email: String,
@@ -18,7 +18,6 @@ data class User(
         @Enumerated(EnumType.STRING)
         var role: Role
 ) : UserDetails {
-
 
         override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
                 return mutableListOf(SimpleGrantedAuthority(role.name))
