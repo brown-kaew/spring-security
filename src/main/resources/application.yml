@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://tiny.db.elephantsql.com:5432/qcoyptmu
+    driver-class-name: org.postgresql.Driver
+    username: qcoyptmu
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
